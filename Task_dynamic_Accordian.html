@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <style>
+    h1{
+      color: black;
+      font-weight: bold;
+    }
+    body {
+      background-image: url(https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg&ga=GA1.1.1222169770.1702512000&semt=sph);
+      background-position: cover;
+      background-size: 100%;
+    }
+
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+    }
+
+    .accordion-item {
+      border: 1px solid #ccc;
+      margin-bottom: 5px;
+    }
+
+    .accordion-title,
+    .accordion-description {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .accordion-description {
+      display: none;
+    }
+  </style>
+  <title>Dynamic Accordion</title>
+</head>
+
+<body>
+  <center>
+    <div id="accordion" class="accordion">
+      <h1>Dynamic Accordian</h1>
+      <!-- Add Title and Description buttons -->
+      <button onclick="addAccordionItem()">Add Title</button>
+      <button onclick="addDescription()">Add Description</button>
+      
+    </div>
+  </center>
+  <script>
+    function addAccordionItem() {
+      const accordion = document.getElementById('accordion');
+
+      // Create accordion item
+      const accordionItem = document.createElement('div');
+      accordionItem.className = 'accordion-item';
+
+      // Create title
+      const title = document.createElement('div');
+      title.className = 'accordion-title';
+      title.textContent = 'Royal Enfield ';
+      title.addEventListener('click', toggleDescription);
+
+      // Create description
+      const description = document.createElement('div');
+      description.className = 'accordion-description';
+      description.textContent = 'The Royal Enfield Classic 350 is powered by 349cc BS6 engine which develops a power of 20.2 bhp and a torque of 27 Nm. With both front and rear disc brakes, Royal Enfield Classic 350 comes up with anti-locking braking system. This Classic 350 bike weighs 195 kg and has a fuel tank capacity of 13 liters.';
+
+      // Append title and description to accordion item
+      accordionItem.appendChild(title);
+      accordionItem.appendChild(description);
+
+      // Append accordion item to accordion
+      accordion.appendChild(accordionItem);
+    }
+
+    function addDescription() {
+      const accordion = document.getElementById('accordion');
+      const accordionItems = accordion.getElementsByClassName('accordion-item');
+
+      // Check if there's at least one accordion item
+      if (accordionItems.length > 0) {
+        // Get the first accordion item
+        const firstAccordionItem = accordionItems[0];
+
+        // Create description
+        const description = document.createElement('div');
+        description.className = 'accordion-description';
+        description.textContent = 'New Description';
+
+        // Append description to the first accordion item
+        firstAccordionItem.appendChild(description);
+      }
+    }
+
+    function toggleDescription() {
+      const description = this.nextElementSibling;
+      description.style.display = (description.style.display === 'none' || description.style.display === '') ? 'block' : 'none';
+    }
+  </script>
+
+</body>
+
+</html>
